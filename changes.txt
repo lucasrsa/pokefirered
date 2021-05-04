@@ -12,3 +12,7 @@
     SPECIES_MACHAMP = lvl50
     SPECIES_GOLEM = lvl50
     SPECIES_GENGAR = lvl50
+
+- Change pokemon TM/HM learnset (tmhm_learnset.h):
+    SPECIES_GYARADOS = HM02_FLY
+    SPECIES_DRAGONAIR = HM02_FLY
