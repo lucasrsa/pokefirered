@@ -14,5 +14,9 @@
     SPECIES_GENGAR = lvl50
 
 - Change pokemon TM/HM learnset (tmhm_learnset.h):
+    SPECIES_ZUBAT = HM02_FLY
+    SPECIES_GOLBAT = HM02_FLY
     SPECIES_GYARADOS = HM02_FLY
     SPECIES_DRAGONAIR = HM02_FLY
+    SPECIES_DODUO = removed HM02_FLY
+    SPECIES_DODRIO = removed HM02_FLY
