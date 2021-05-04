@@ -1,0 +1,14 @@
+- All moves were divided in Special, Physical or Status, removing the type constraint;
+
+- These were the new evolution methods (evolution.h) added (to allow emulator evolutions):
+    SPECIES_POLIWRATH = lvl50
+    SPECIES_POLITOED = ITEM_WATER_STONE
+    SPECIES_SLOWKING = ITEM_WATER_STONE
+    SPECIES_STEELIX = lvl50
+    SPECIES_KINGDRA = lvl50
+    SPECIES_SCIZOR = lvl50
+    SPECIES_PORYGON2 = lvl40
+    SPECIES_ALAKAZAM = lvl50
+    SPECIES_MACHAMP = lvl50
+    SPECIES_GOLEM = lvl50
+    SPECIES_GENGAR = lvl50
