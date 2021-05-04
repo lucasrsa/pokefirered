@@ -20,3 +20,30 @@
     SPECIES_DRAGONAIR = HM02_FLY
     SPECIES_DODUO = removed HM02_FLY
     SPECIES_DODRIO = removed HM02_FLY
+
+## Big typing change
+- Change pokemon types (base_stats.h):
+    SPECIES_NINETALES = TYPE_FIRE/TYPE_PSYCHIC
+    SPECIES_PSYDUCK = TYPE_WATER/TYPE_PSYCHIC
+    SPECIES_GOLDUCK = TYPE_WATER/TYPE_PSYCHIC
+    SPECIES_GYARADOS = TYPE_WATER/TYPE_DRAGON
+
+- Change pokemon learnset to better match new types (tmhm_learnset.h/level_up_learnsets.h/tutor_learnsets.h)
+    Psychic TMs:
+        TM16_LIGHT_SCREEN
+        TM29_PSYCHIC
+        TM33_REFLECT
+    Level_up Learnset:
+        SPECIES_GYARADOS = MOVE_LEER -> 20
+        SPECIES_GYARADOS = MOVE_BITE -> 30
+        SPECIES_PSYDUCK = MOVE_PSYBEAM -> 28
+        SPECIES_PSYDUCK = MOVE_PSYCHIC -> 45
+        SPECIES_GOLDUCK = MOVE_PSYBEAM -> 28
+        SPECIES_GOLDUCK = MOVE_PSYCHIC -> 50
+        SPECIES_NINETALES = MOVE_SAFEGUARD -> removed
+        SPECIES_NINETALES = MOVE_CONFUSION -> 1
+        SPECIES_NINETALES = MOVE_PSYCHIC -> 45
+
+- Change evolution method to better match new types (evolution.h):
+    SPECIES_GYARADOS = lvl25
+
