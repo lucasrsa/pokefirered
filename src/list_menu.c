@@ -11,29 +11,6 @@
 #include "pokemon_icon.h"
 #include "constants/songs.h"
 
-struct UnkIndicatorsStruct
-{
-    u8 field_0;
-    u16 *field_4;
-    u16 field_8;
-    u16 field_A;
-    u16 field_C;
-    u16 field_E;
-    u8 field_10;
-    u8 field_11;
-    u8 field_12;
-    u8 field_13;
-    u8 field_14_0:4;
-    u8 field_14_1:4;
-    u8 field_15_0:4;
-    u8 field_15_1:4;
-    u8 field_16_0:3;
-    u8 field_16_1:3;
-    u8 field_16_2:2;
-    u8 field_17_0:6;
-    u8 field_17_1:2;
-};
-
 struct MysteryGiftLinkMenuStruct
 {
     u32 currItemId;
@@ -72,39 +49,39 @@ static void ListMenuDrawCursor(struct ListMenu *list);
 static void ListMenuCallSelectionChangedCallback(struct ListMenu *list, u8 onInit);
 static u8 ListMenuAddCursorObject(struct ListMenu *list, u32 cursorKind);
 
-const struct MoveMenuInfoIcon gMoveMenuInfoIcons[] =
-{
-    { 12, 12, 0x00 },       // Unused
-    { 32, 12, 0x20 },       // Normal icon
-    { 32, 12, 0x64 },       // Fight icon
-    { 32, 12, 0x60 },       // Flying icon
-    { 32, 12, 0x80 },       // Poison icon
-    { 32, 12, 0x48 },       // Ground icon
-    { 32, 12, 0x44 },       // Rock icon
-    { 32, 12, 0x6C },       // Bug icon
-    { 32, 12, 0x68 },       // Ghost icon
-    { 32, 12, 0x88 },       // Steel icon
-    { 32, 12, 0xA4 },       // ??? (Mystery) icon
-    { 32, 12, 0x24 },       // Fire icon
-    { 32, 12, 0x28 },       // Water icon
-    { 32, 12, 0x2C },       // Grass icon
-    { 32, 12, 0x40 },       // Electric icon
-    { 32, 12, 0x84 },       // Psychic icon
-    { 32, 12, 0x4C },       // Ice icon
-    { 32, 12, 0xA0 },       // Dragon icon
-    { 32, 12, 0x8C },       // Dark icon
-    { 40, 12, 0xA8 },       // -Type- icon
-    { 40, 12, 0xC0 },       // -Power- icon
-    { 40, 12, 0xC8 },       // -Accuracy- icon
-    { 40, 12, 0xE0 },       // -PP- icon
-    { 40, 12, 0xE8 },       // -Effect- icon
+static const struct MoveMenuInfoIcon sMenuInfoIcons[] =
+{   // { width, height, offset }
+    [MENU_INFO_ICON_CAUGHT] = { 12, 12, 0x00 },
+    [TYPE_NORMAL + 1]   = { 32, 12, 0x20 },
+    [TYPE_FIGHTING + 1] = { 32, 12, 0x64 },
+    [TYPE_FLYING + 1]   = { 32, 12, 0x60 },
+    [TYPE_POISON + 1]   = { 32, 12, 0x80 },
+    [TYPE_GROUND + 1]   = { 32, 12, 0x48 },
+    [TYPE_ROCK + 1]     = { 32, 12, 0x44 },
+    [TYPE_BUG + 1]      = { 32, 12, 0x6C },
+    [TYPE_GHOST + 1]    = { 32, 12, 0x68 },
+    [TYPE_STEEL + 1]    = { 32, 12, 0x88 },
+    [TYPE_MYSTERY + 1]  = { 32, 12, 0xA4 },
+    [TYPE_FIRE + 1]     = { 32, 12, 0x24 },
+    [TYPE_WATER + 1]    = { 32, 12, 0x28 },
+    [TYPE_GRASS + 1]    = { 32, 12, 0x2C },
+    [TYPE_ELECTRIC + 1] = { 32, 12, 0x40 },
+    [TYPE_PSYCHIC + 1]  = { 32, 12, 0x84 },
+    [TYPE_ICE + 1]      = { 32, 12, 0x4C },
+    [TYPE_DRAGON + 1]   = { 32, 12, 0xA0 },
+    [TYPE_DARK + 1]     = { 32, 12, 0x8C },
+    [MENU_INFO_ICON_TYPE]      = { 40, 12, 0xA8 },
+    [MENU_INFO_ICON_POWER]     = { 40, 12, 0xC0 },
+    [MENU_INFO_ICON_ACCURACY]  = { 40, 12, 0xC8 },
+    [MENU_INFO_ICON_PP]        = { 40, 12, 0xE0 },
+    [MENU_INFO_ICON_EFFECT]    = { 40, 12, 0xE8 },
 };
 
 static void ListMenuDummyTask(u8 taskId)
 {
 }
 
-u32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palNum)
+u32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const struct ListMenuTemplate *listMenuTemplate, u8 arg2, u16 tileNum, u16 palOffset)
 {
     switch (sMysteryGiftLinkMenu.state)
     {
@@ -114,9 +91,9 @@ u32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const str
         switch (arg2)
         {
         case 2:
-            TextWindow_SetUserSelectedFrame(sMysteryGiftLinkMenu.windowId, tileNum, palNum);
+            LoadUserWindowGfx(sMysteryGiftLinkMenu.windowId, tileNum, palOffset);
         case 1:
-            DrawTextBorderOuter(sMysteryGiftLinkMenu.windowId, tileNum, palNum / 16);
+            DrawTextBorderOuter(sMysteryGiftLinkMenu.windowId, tileNum, palOffset / 16);
             break;
         }
         gMultiuseListMenuTemplate = *listMenuTemplate;
@@ -369,7 +346,7 @@ static void ListMenuPrint(struct ListMenu *list, const u8 *str, u8 x, u8 y)
         colors[0] = gListMenuOverride.fillValue;
         colors[1] = gListMenuOverride.cursorPal;
         colors[2] = gListMenuOverride.cursorShadowPal;
-        AddTextPrinterParameterized4(list->template.windowId, gListMenuOverride.fontId, x, y, gListMenuOverride.lettersSpacing, 0, colors, TEXT_SPEED_FF, str);
+        AddTextPrinterParameterized4(list->template.windowId, gListMenuOverride.fontId, x, y, gListMenuOverride.lettersSpacing, 0, colors, TEXT_SKIP_DRAW, str);
         gListMenuOverride.enabled = FALSE;
     }
     else
@@ -377,7 +354,7 @@ static void ListMenuPrint(struct ListMenu *list, const u8 *str, u8 x, u8 y)
         colors[0] = list->template.fillValue;
         colors[1] = list->template.cursorPal;
         colors[2] = list->template.cursorShadowPal;
-        AddTextPrinterParameterized4(list->template.windowId, list->template.fontId, x, y, list->template.lettersSpacing, 0, colors, TEXT_SPEED_FF, str);
+        AddTextPrinterParameterized4(list->template.windowId, list->template.fontId, x, y, list->template.lettersSpacing, 0, colors, TEXT_SKIP_DRAW, str);
     }
 }
 
@@ -436,7 +413,7 @@ static u8 ListMenuAddCursorObject(struct ListMenu *list, u32 cursorKind)
     cursor.rowWidth = GetWindowAttribute(list->template.windowId, WINDOW_WIDTH) * 8 + 2;
     cursor.rowHeight = GetFontAttribute(list->template.fontId, FONTATTR_MAX_LETTER_HEIGHT) + 2;
     cursor.tileTag = 0x4000;
-    cursor.palTag = SPRITE_INVALID_TAG;
+    cursor.palTag = TAG_NONE;
     cursor.palNum = 15;
     return ListMenuAddCursorObjectInternal(&cursor, cursorKind);
 }
@@ -646,111 +623,111 @@ void ListMenuDefaultCursorMoveFunc(s32 itemIndex, bool8 onInit, struct ListMenu 
         PlaySE(SE_SELECT);
 }
 
-static s32 ListMenuGetUnkIndicatorsStructFields(u8 taskId, u8 field)
+static s32 ListMenuGetTemplateField(u8 taskId, u8 field)
 {
-    struct UnkIndicatorsStruct *data = (struct UnkIndicatorsStruct *)gTasks[taskId].data;
+    struct ListMenu *data = (struct ListMenu *)gTasks[taskId].data;
 
     switch (field)
     {
-    case 0:
-    case 1:
-        return (s32)(data->field_4);
-    case 2:
-        return data->field_C;
-    case 3:
-        return data->field_E;
-    case 4:
-        return data->field_10;
-    case 5:
-        return data->field_11;
-    case 6:
-        return data->field_12;
-    case 7:
-        return data->field_13;
-    case 8:
-        return data->field_14_0;
-    case 9:
-        return data->field_14_1;
-    case 10:
-        return data->field_15_0;
-    case 11:
-        return data->field_15_1;
-    case 12:
-        return data->field_16_0;
-    case 13:
-        return data->field_16_1;
-    case 14:
-        return data->field_16_2;
-    case 15:
-        return data->field_17_0;
-    case 16:
-        return data->field_17_1;
+    case LISTFIELD_MOVECURSORFUNC:
+    case LISTFIELD_MOVECURSORFUNC2:
+        return (s32)(data->template.moveCursorFunc);
+    case LISTFIELD_TOTALITEMS:
+        return data->template.totalItems;
+    case LISTFIELD_MAXSHOWED:
+        return data->template.maxShowed;
+    case LISTFIELD_WINDOWID:
+        return data->template.windowId;
+    case LISTFIELD_HEADERX:
+        return data->template.header_X;
+    case LISTFIELD_ITEMX:
+        return data->template.item_X;
+    case LISTFIELD_CURSORX:
+        return data->template.cursor_X;
+    case LISTFIELD_UPTEXTY:
+        return data->template.upText_Y;
+    case LISTFIELD_CURSORPAL:
+        return data->template.cursorPal;
+    case LISTFIELD_FILLVALUE:
+        return data->template.fillValue;
+    case LISTFIELD_CURSORSHADOWPAL:
+        return data->template.cursorShadowPal;
+    case LISTFIELD_LETTERSPACING:
+        return data->template.lettersSpacing;
+    case LISTFIELD_ITEMVERTICALPADDING:
+        return data->template.itemVerticalPadding;
+    case LISTFIELD_SCROLLMULTIPLE:
+        return data->template.scrollMultiple;
+    case LISTFIELD_FONTID:
+        return data->template.fontId;
+    case LISTFIELD_CURSORKIND:
+        return data->template.cursorKind;
     default:
         return -1;
     }
 }
 
-void ListMenuSetUnkIndicatorsStructField(u8 taskId, u8 field, s32 value)
+void ListMenuSetTemplateField(u8 taskId, u8 field, s32 value)
 {
-    struct UnkIndicatorsStruct *data = (struct UnkIndicatorsStruct *)gTasks[taskId].data;
+    struct ListMenu *data = (struct ListMenu *)gTasks[taskId].data;
 
     switch (field)
     {
-    case 0:
-    case 1:
-        data->field_4 = (void *)value;
+    case LISTFIELD_MOVECURSORFUNC:
+    case LISTFIELD_MOVECURSORFUNC2:
+        data->template.moveCursorFunc = (void *)value;
         break;
-    case 2:
-        data->field_C = value;
+    case LISTFIELD_TOTALITEMS:
+        data->template.totalItems = value;
         break;
-    case 3:
-        data->field_E = value;
+    case LISTFIELD_MAXSHOWED:
+        data->template.maxShowed = value;
         break;
-    case 4:
-        data->field_10 = value;
+    case LISTFIELD_WINDOWID:
+        data->template.windowId = value;
         break;
-    case 5:
-        data->field_11 = value;
+    case LISTFIELD_HEADERX:
+        data->template.header_X = value;
         break;
-    case 6:
-        data->field_12 = value;
+    case LISTFIELD_ITEMX:
+        data->template.item_X = value;
         break;
-    case 7:
-        data->field_13 = value;
+    case LISTFIELD_CURSORX:
+        data->template.cursor_X = value;
         break;
-    case 8:
-        data->field_14_0 = value;
+    case LISTFIELD_UPTEXTY:
+        data->template.upText_Y = value;
         break;
-    case 9:
-        data->field_14_1 = value;
+    case LISTFIELD_CURSORPAL:
+        data->template.cursorPal = value;
         break;
-    case 10:
-        data->field_15_0 = value;
+    case LISTFIELD_FILLVALUE:
+        data->template.fillValue = value;
         break;
-    case 11:
-        data->field_15_1 = value;
+    case LISTFIELD_CURSORSHADOWPAL:
+        data->template.cursorShadowPal = value;
         break;
-    case 12:
-        data->field_16_0 = value;
+    case LISTFIELD_LETTERSPACING:
+        data->template.lettersSpacing = value;
         break;
-    case 13:
-        data->field_16_1 = value;
+    case LISTFIELD_ITEMVERTICALPADDING:
+        data->template.itemVerticalPadding = value;
         break;
-    case 14:
-        data->field_16_2 = value;
+    case LISTFIELD_SCROLLMULTIPLE:
+        data->template.scrollMultiple = value;
         break;
-    case 15:
-        data->field_17_0 = value;
+    case LISTFIELD_FONTID:
+        data->template.fontId = value;
         break;
-    case 16:
-        data->field_17_1 = value;
+    case LISTFIELD_CURSORKIND:
+        data->template.cursorKind = value;
         break;
     }
 }
 
 void ListMenu_LoadMonIconPalette(u8 palOffset, u16 speciesId)
 {
-    LoadPalette(GetValidMonIconPalettePtr(speciesId), palOffset, 0x20);
+    LoadPalette(GetValidMonIconPalettePtr(speciesId), palOffset, PLTT_SIZE_4BPP);
 }
 
 void ListMenu_DrawMonIconGraphics(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y)
@@ -766,16 +743,16 @@ void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
     {
     case 0:
     default:
-        palette = gFireRedMenuElements1_Pal;
+        palette = gMenuInfoElements1_Pal;
         break;
     case 1:
-        palette = gFireRedMenuElements2_Pal;
+        palette = gMenuInfoElements2_Pal;
         break;
     }
-    LoadPalette(palette, palOffset, 0x20);
+    LoadPalette(palette, palOffset, PLTT_SIZE_4BPP);
 }
 
-void BlitMoveInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
+void BlitMenuInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
 {
-    BlitBitmapRectToWindow(windowId, gFireRedMenuElements_Gfx + gMoveMenuInfoIcons[iconId].offset * 32, 0, 0, 128, 128, x, y, gMoveMenuInfoIcons[iconId].width, gMoveMenuInfoIcons[iconId].height);
+    BlitBitmapRectToWindow(windowId, &gMenuInfoElements_Gfx[sMenuInfoIcons[iconId].offset * TILE_SIZE_4BPP], 0, 0, 128, 128, x, y, sMenuInfoIcons[iconId].width, sMenuInfoIcons[iconId].height);
 }
