@@ -476,8 +476,6 @@ extern struct BattleStruct *gBattleStruct;
         typeArg = gBattleMoves[move].type;                            \
 }
 
-#define IS_TYPE_PHYSICAL(moveType)(moveType < TYPE_MYSTERY)
-#define IS_TYPE_SPECIAL(moveType)(moveType > TYPE_MYSTERY)
 #define IS_MOVE_PHYSICAL(moveCategory)(moveCategory == MOVE_CATEGORY_PHYSICAL)
 #define IS_MOVE_SPECIAL(moveCategory)(moveCategory == MOVE_CATEGORY_SPECIAL)
 
