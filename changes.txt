@@ -44,6 +44,7 @@
         SPECIES_NINETALES = MOVE_SAFEGUARD -> removed
         SPECIES_NINETALES = MOVE_CONFUSION -> 1
         SPECIES_NINETALES = MOVE_PSYCHIC -> 45
+        SPECIES_JOLTEON = MOVE_THUNDERBOLT -> 45
 
 - Change evolution method to better match new types (evolution.h):
     SPECIES_GYARADOS = lvl25
