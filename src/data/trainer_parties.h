@@ -5920,7 +5920,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalPokemonTowerBulbasa
     {
         .iv = 100,
         .lvl = 22,
-        .species = SPECIES_GROWLITHE,
+        .species = SPECIES_PONYTA,
     },
     {
         .iv = 100,
@@ -6004,7 +6004,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalSilphBulbasaur[] = 
     {
         .iv = 100,
         .lvl = 35,
-        .species = SPECIES_GROWLITHE,
+        .species = SPECIES_PONYTA,
     },
     {
         .iv = 100,
@@ -6107,8 +6107,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
     {
         .iv = 150,
         .lvl = 45,
-        .species = SPECIES_GROWLITHE,
-        .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_LEER, MOVE_AGILITY},
+        .species = SPECIES_RAPIDASH,
+        .moves = {MOVE_FIRE_SPIN, MOVE_TAKE_DOWN, MOVE_AGILITY, MOVE_FURY_ATTACK},
     },
     {
         .iv = 150,
@@ -6240,9 +6240,9 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionFirstBulbasaur[] = 
     {
         .iv = 255,
         .lvl = 61,
-        .species = SPECIES_ARCANINE,
+        .species = SPECIES_RAPIDASH,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_EXTREME_SPEED, MOVE_FLAMETHROWER, MOVE_ROAR, MOVE_BITE},
+        .moves = {MOVE_TAKE_DOWN, MOVE_FLAMETHROWER, MOVE_AGILITY, MOVE_BOUNCE},
     },
     {
         .iv = 255,
@@ -10790,9 +10790,9 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionRematchBulbasaur[] 
     {
         .iv = 255,
         .lvl = 73,
-        .species = SPECIES_ARCANINE,
+        .species = SPECIES_RAPIDASH,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_EXTREME_SPEED, MOVE_OVERHEAT, MOVE_AERIAL_ACE, MOVE_IRON_TAIL},
+        .moves = {MOVE_SUNNY_DAY, MOVE_OVERHEAT, MOVE_SOLAR_BEAM, MOVE_IRON_TAIL},
     },
     {
         .iv = 255,
