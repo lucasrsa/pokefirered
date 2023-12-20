@@ -10246,9 +10246,9 @@
                 "species": "SPECIES_TANGELA"
               },
               {
-                "min_level": 28,
-                "max_level": 28,
-                "species": "SPECIES_TANGELA"
+                "min_level": 18,
+                "max_level": 27,
+                "species": "SPECIES_SCYTHER"
               }
             ]
           },
@@ -10400,9 +10400,9 @@
                 "species": "SPECIES_TANGELA"
               },
               {
-                "min_level": 28,
-                "max_level": 28,
-                "species": "SPECIES_TANGELA"
+                "min_level": 18,
+                "max_level": 27,
+                "species": "SPECIES_SCYTHER"
               }
             ]
           },
