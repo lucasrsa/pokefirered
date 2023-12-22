@@ -3760,8 +3760,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22EarlyBulbasau
     {
         .iv = 50,
         .lvl = 9,
-        .species = SPECIES_PIDGEY,
-        .moves = {MOVE_TACKLE, MOVE_SAND_ATTACK, MOVE_NONE, MOVE_NONE},
+        .species = SPECIES_SPEAROW,
+        .moves = {MOVE_TACKLE, MOVE_GROWL, MOVE_LEER, MOVE_NONE},
     },
     {
         .iv = 50,
@@ -3817,8 +3817,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalCeruleanBulbasaur[] 
     {
         .iv = 50,
         .lvl = 17,
-        .species = SPECIES_PIDGEOTTO,
-        .moves = {MOVE_TACKLE, MOVE_SAND_ATTACK, MOVE_GUST, MOVE_QUICK_ATTACK},
+        .species = SPECIES_SPEAROW,
+        .moves = {MOVE_PECK, MOVE_GROWL, MOVE_LEER, MOVE_FURY_ATTACK},
     },
     {
         .iv = 50,
@@ -5836,7 +5836,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalSsAnneBulbasaur[] =
     {
         .iv = 50,
         .lvl = 19,
-        .species = SPECIES_PIDGEOTTO,
+        .species = SPECIES_SPEAROW,
     },
     {
         .iv = 50,
@@ -5910,7 +5910,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalPokemonTowerBulbasa
     {
         .iv = 100,
         .lvl = 25,
-        .species = SPECIES_PIDGEOTTO,
+        .species = SPECIES_FEAROW,
     },
     {
         .iv = 100,
@@ -5994,7 +5994,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RivalSilphBulbasaur[] = 
     {
         .iv = 100,
         .lvl = 37,
-        .species = SPECIES_PIDGEOT,
+        .species = SPECIES_FEAROW,
     },
     {
         .iv = 100,
@@ -6089,8 +6089,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22LateBulbasaur
     {
         .iv = 150,
         .lvl = 47,
-        .species = SPECIES_PIDGEOT,
-        .moves = {MOVE_FEATHER_DANCE, MOVE_WING_ATTACK, MOVE_GUST, MOVE_QUICK_ATTACK},
+        .species = SPECIES_FEAROW,
+        .moves = {MOVE_FURY_ATTACK, MOVE_PURSUIT, MOVE_MIRROR_MOVE, MOVE_DRILL_PECK},
     },
     {
         .iv = 150,
@@ -6212,9 +6212,9 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionFirstBulbasaur[] = 
     {
         .iv = 255,
         .lvl = 59,
-        .species = SPECIES_PIDGEOT,
+        .species = SPECIES_FEAROW,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_AERIAL_ACE, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK, MOVE_WHIRLWIND},
+        .moves = {MOVE_PURSUIT, MOVE_MIRROR_MOVE, MOVE_DRILL_PECK, MOVE_AGILITY},
     },
     {
         .iv = 255,
